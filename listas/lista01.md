@@ -257,18 +257,18 @@ No entanto, podemos multplicar por $\frac{-1}{-1}$ várias vezes e chegar numa f
 
 (pular)
 
-#### 2.4 Obtenha expressões para as derivadas primeiras e segundas da função de Rosenbrock $f (x) = 100(x_2 − x^2_1)^2 + (1 − x_1)^2$. Verifique que $ẍ = (1, 1)^t$ é um minimizador local. Prove que $∇^2f (ẍ)$ é singular se e somente se $x_2 −x^2_1 = 0.005$
+### 2.4 Obtenha expressões para as derivadas primeiras e segundas da função de Rosenbrock $f (x) = 100(x_2 − x^2_1)^2 + (1 − x_1)^2$. Verifique que $ẍ = (1, 1)^t$ é um minimizador local. Prove que $∇^2f (ẍ)$ é singular se e somente se $x_2 −x^2_1 = 0.005$
 
 Achando o gradiente
 
-$\nabla f(x) = (200(x_2-x_1^2)(-2x_1) + 2(1-x_1)*(-1), 200(x_2-x^2_1))$
+$\nabla f(x) = (200(x_2-x_1^2)(-2x_1) + 2(1-x_1)*(-1),\ 200(x_2-x^2_1))$
 
-$= (-400x_2x_1 - 400x^3_1 - 2 + 2x_1,200x_2 - 200x^2_1)$
+$= (-400x_2x_1 + 400x^3_1 - 2 + 2x_1,\ 200x_2 - 200x^2_1)$
 
 Igualando ao vetor nulo:
 
 $\begin{cases}
-400x_2x_1 - 400x^3_1 - 2 + 2x_1 = 0 \\
+400x_2x_1 + 400x^3_1 - 2 + 2x_1 = 0 \\
 200x_2 - 200x^2_1 = 0
 \end{cases}$
 
@@ -278,6 +278,114 @@ $200x_2 - 200x^2_1 = 0 \implies x_2= x_1^2$
 
 Substituindo:
 
-$400x^3_1 - 400x^3_1 -2 + 2x_1 = 0 \implies x_1 = 1$
+$400x^3_1 + 400x^3_1 -2 + 2x_1 = 0 \implies x_1 = 1$
 
-$\therefore x_1 = 1$ & $x_2 = x_1^2 \implies x_2 = 1$
+$\therefore x_1 = 1$ & $x_2 = x_1^2 \implies x_2 = 1$ $QED$
+
+**(b) Provando singular quando $x_2 - x_1^2 = 0.005$**
+
+> OBS: A matriz Hessiana $\nabla ^2 f(x)$  é dita singular se não é invertível i.e. determinante é zero.
+
+$\nabla f(x)= (-400x_2x_1 + 400x^3_1 - 2 + 2x_1,\ 200x_2 - 200x^2_1)$
+
+$det(H_f) = 
+\begin{vmatrix}
+-400x_2 + 1200x_1^2 + 2 & -400x_1\\
+-400x_1 & 200
+\end{vmatrix}
+= -8*10^4x_2+24*10^4x_1^2 + 400 - 16*10^4x_1^2$
+
+$=8*10^4x_2 - 8*10^4x_1^2+400=0$
+
+Dividindo por 400:
+
+$=200x_2 - 200x_1^2+1=0$
+
+Dividindo por 200:
+
+$x_2 - x_1^2 + 0.005 = 0 \implies x_2 - x_1^2 = 0.005$ QED
+
+### Questão 2.5
+
+**Encontre os pontos estacionários de**
+
+$f(x) = 2x^3 - 3x^2 - 6x y (x - y - 1)$
+
+**Quais desses pontos são minimizadores ou maximizadores, locais ou globais?**
+
+$f(x) = 2x^3 - 3x^2 - 6x y (x - y - 1) = 2x^3 - 3x^2 - 6x^2 y + 6xy^2 + 6xy$
+
+
+$\nabla f(x) = (6x^2 - 6x - 12xy + 12y^2 + 6y,\ -6x^2 + 12xy + 6x)$
+
+Simplificando:
+
+$\nabla f(x) = (6x^2 - 6x - 12xy + 12y^2 + 6y,\ -6x^2 + 12xy + 6x)$
+
+$\begin{cases}
+6x^2 - 6x - 12xy + 12y^2 + 6y = 0 \\
+-6x^2 + 12xy + 6x = 0
+\end{cases}$
+
+Dividindo por $6$:
+
+$\begin{cases}
+x^2 - x - 2xy + 2y^2 + y = 0 \\
+-x^2 + 2xy + x = 0
+\end{cases}$
+
+Isolando o $y$ na segunda linha e dividindo por x:
+
+> Obs: Com isso, também tem-se $x= 0$ como solução, que resolve a primeira equação quando $y=0$ também.
+
+$\begin{cases}
+x^2 - x - 2xy + 2y^2 + y = 0 \\
+y = \frac{x - 1}{2} 
+\end{cases}$
+
+Substituindo $y$ por $\frac{x-1}{2}$ na primeira equação:
+
+$x^2 - x - 2x\frac{x-1}{2} + \frac{x^2-2x+1}{2} + \frac{x-1}{2} = 0$
+
+Separando as somas das frações:
+
+$x^2 - x - x^2 + x + \frac{x^2}{2} -x +\frac{1}{2} + \frac{x}{2} - \frac{1}{2} = 0$
+
+Removendo os termos nulos:
+
+$\frac{x^2}{2} -x + \frac{x}{2} = 0 \implies x^2 - x = 0$
+
+Já sabe-se do ponto $(0,0)$, mas agora obtem-se o ponto $x=1$ e $y=0$
+
+Pela hessiana:
+
+$\nabla^2 f(x)=\begin{bmatrix}
+12x - 6 -12y & -12x +24y + 6 \\
+-12x + 24y + 6 & 12x
+\end{bmatrix}$
+
+Tem-se o caso 1: hessiana no $x^* = (0,0)$:
+
+No ponto $x^* = (0,0)$ com um vetor $d = (d_1,d_2)$ qualquer, tem-se:
+
+$\nabla^2 d^T*f(x^*)*d = d^T*
+\begin{bmatrix}
+-6 & 6\\
+6 & 0 
+\end{bmatrix}*d= -6d_1^2 + 6d_2^2 + 6d_1d_2$
+
+Portano hessiana $\nabla f(0,0)$ é indefinida. Com o ponto $(0,0)$ como sela
+
+Caso 2: hessiana no $x^* = (1,0)$:
+
+$\nabla^2 d^T*f(x^*)*d = d^T*
+\begin{bmatrix}
+6 & -6\\
+-6 & 12 
+\end{bmatrix}*d= 6d_1^2 -6d_1d_2 - 6d_1d_2 + 12d_2^2 = 6(d_1-d_2)^2 + 6d_2^2 > 0$
+
+Portano hessiana $\nabla f(1,0)$ é definida positiva. Com o ponto $(1,0)$ mínimizador.
+
+### Questão 2.6
+
+**Seja $f(x) = (x_1 - x_2^2)(x_1 - \frac{1}{2}x_2^2)$. Verifique que $\bar{x} = (0, 0)^t$ é um minimizador local de  $\varphi(\lambda) \equiv f(\bar{x} + \lambda d)$ para todo $d \in \mathbb{R}^2$, mas $\bar{x}$ não é minimizador local de $f$.**
